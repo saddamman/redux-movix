@@ -11,10 +11,12 @@ const homeSlice = createSlice({
     getApiConfiguration(state, action) {
       state.url = action.payload;
     },
-    getGenres(state, action) {},
+    getGenres(state, action) {
+      state.genres = action.payload;
+    },
   },
 });
 
-const { getApiConfiguration, getGenres } = homeSlice.actions;
+export const { getApiConfiguration, getGenres } = homeSlice.actions;
 
 export default homeSlice.reducer;

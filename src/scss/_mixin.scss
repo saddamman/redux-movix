@@ -1,0 +1,149 @@
+// BreakPoints for Media Query///////////////////////////////////
+
+$breakpoints: (
+  "sm": 575.98px,
+  "md": 767.98px,
+  "lg": 767.98px,
+  "xl": 1199.98px,
+  "xxl": 1399.98px,
+);
+
+@mixin sm {
+  @media (max-width: map-get($breakpoints, "sm")) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: map-get($breakpoints, "md")) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: map-get($breakpoints, "lg")) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: map-get($breakpoints, "xl")) {
+    @content;
+  }
+}
+@mixin xxl {
+  @media (max-width: map-get($breakpoints, "xl")) {
+    @content;
+  }
+}
+
+@mixin borderRadius($topLeft: 10px, $topRight: 10px, $bottomRight: 10px, $bottomLeft: 10px) {
+  border-radius: $topLeft $topRight $bottomRight $bottomLeft;
+}
+
+// Flex///////////////////////////////////////
+
+@mixin flexbox(
+  $display: flex,
+  $direction: null,
+  $placeContent: null,
+  $placeItems: null,
+  $wrap: null,
+  $shrink: null,
+  $grow: null,
+  $align-content: null,
+  $justify-content: null,
+  $align-items: null,
+  $justify-items: null
+) {
+  display: $display;
+  flex-direction: $direction;
+
+  @if $placeContent == null {
+    @if $align-content {
+      align-content: $align-content;
+    }
+    @if $justify-content {
+      justify-content: $justify-content;
+    }
+  } @else {
+    place-content: $placeContent;
+  }
+
+  @if $placeItems == null {
+    @if $align-items {
+      align-items: $align-items;
+    }
+    @if $justify-items {
+      justify-items: $justify-items;
+    }
+  } @else {
+    place-items: $placeItems;
+  }
+
+  flex-wrap: $wrap;
+  flex-shrink: $shrink;
+  flex-grow: $grow;
+}
+
+// -------------------- Headings ---------------------
+
+@mixin heading($fontSize: 18px, $color: var(--black), $fontWeight: $fw-400) {
+  font-size: $fontSize;
+  color: $color;
+  font-weight: $fontWeight;
+}
+
+// -------------------- Border  ---------------------
+@mixin border($border-size: 1px, $border-pattern: solid, $border-color: var(--black), $border-position: all, $border-clear: none) {
+  @if $border-position == all {
+    border: $border-size $border-pattern $border-color;
+  } @else {
+    border-#{$border-position}: $border-size $border-pattern $border-color;
+  }
+  @if $border-clear == none {
+    $border-position: all;
+  } @else {
+    border-#{$border-clear}: none;
+  }
+}
+@mixin border-radius($top-left: null, $top-right: null, $bottom-right: null, $bottom-left: null) {
+  -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  -ms-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
+}
+// -------------------- Buttons ---------------------
+
+@mixin button(
+  $fontSize: 18px,
+  $color: var(--black),
+  $fontWeight: $fw-400,
+  $bgColor: var(--gradient),
+  $textAlign: center,
+  $paddingLeft: 10px,
+  $border: 0
+) {
+  font-size: $fontSize;
+  color: $color;
+  font-weight: $fontWeight;
+  background: $bgColor;
+  text-align: $textAlign;
+  border: $border;
+}
+
+@mixin resetButton($border: 0, $bgColor: null) {
+  border: $border;
+  background: $bgColor;
+}
+
+@mixin padding($top: null, $top-right: null, $bottom-right: null, $bottom-left: null, $direction: null, $amount: 10px) {
+  @if ($direction == "all") {
+    padding: $amount;
+  } @else {
+    padding-top: $top;
+    padding-right: $top-right;
+    padding-bottom: $bottom-right;
+    padding-left: $bottom-left;
+  }
+}
