@@ -46,7 +46,7 @@ $breakpoints: (
 @mixin flexbox(
   $display: flex,
   $direction: null,
-  $placeContent: null,
+  $place-content: null,
   $placeItems: null,
   $wrap: null,
   $shrink: null,
@@ -59,7 +59,7 @@ $breakpoints: (
   display: $display;
   flex-direction: $direction;
 
-  @if $placeContent == null {
+  @if $place-content == null {
     @if $align-content {
       align-content: $align-content;
     }
@@ -67,7 +67,7 @@ $breakpoints: (
       justify-content: $justify-content;
     }
   } @else {
-    place-content: $placeContent;
+    place-content: $place-content;
   }
 
   @if $placeItems == null {
@@ -132,7 +132,7 @@ $breakpoints: (
   border: $border;
 }
 
-@mixin resetButton($border: 0, $bgColor: null) {
+@mixin resetButton($border: 0, $bgColor: transparent) {
   border: $border;
   background: $bgColor;
 }

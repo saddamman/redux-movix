@@ -5,13 +5,13 @@ import PageNotFound from "../pages/PageNotFound";
 import Details from "../pages/Details";
 import SearchResult from "../pages/SearchResult";
 import Explore from "../pages/Explore";
-import Header from "../components/layout/footer";
+import Header from "../components/layout/header";
 import Footer from "../components/layout/footer";
 const AppRouter = () => {
   return (
     <div>
       <BrowserRouter>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/:mediaType/:id" element={<Details />}></Route>
@@ -19,7 +19,7 @@ const AppRouter = () => {
           <Route path="/:explore/:mediaType" element={<Explore />}></Route>
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </div>
   );
