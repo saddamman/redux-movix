@@ -44,10 +44,10 @@
     position: relative;
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 20px;
 
     &__title {
       @include heading($color: var(--white), $fontSize: 90px, $fontWeight: $fw-700);
-      margin-bottom: 0;
       @include md {
         font-size: 60px;
       }
