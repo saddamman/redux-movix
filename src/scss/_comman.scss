@@ -1,0 +1,8 @@
+.slider__title__section {
+  @include flexbox($justify-content: space-between, $align-items: center);
+  margin-bottom: 20px;
+}
+
+.slider__title {
+  @include heading($color: var(--white), $fontSize: $font24);
+}

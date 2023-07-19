@@ -4,8 +4,15 @@
 @import "./typography";
 @import "./variables";
 
+// COMPONENTS
+@import "./comman";
+
+// COMPONENTS
+@import "./components/commanTab";
+
 // HOME
 @import "./pages/home/banner";
+@import "./pages/home/trending";
 
 // LAYOUT
 @import "./layout/header";
