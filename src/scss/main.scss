@@ -6,13 +6,22 @@
 
 // COMPONENTS
 @import "./comman";
+@import "./components/movieSlider";
+@import "./components/circle";
+@import "./components/genres";
 
-// COMPONENTS
+// COMPONENTS > ui
 @import "./components/commanTab";
+@import "./components/ui/sliderCard";
+@import "./components/ui/playButton";
 
 // HOME
+@import "./pages/home/home";
 @import "./pages/home/banner";
 @import "./pages/home/trending";
+@import "./pages/home/details/bannerDetails";
+@import "./pages/home/details/topCast";
+@import "./pages/home/details/officialVideos";
 
 // LAYOUT
 @import "./layout/header";

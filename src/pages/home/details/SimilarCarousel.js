@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import CommanTab from "../../components/commanTab";
-import useFetch from "../../hooks/useFetch";
-import MovieSlider from "../../components/movieSlider";
-import SliderCard from "../../components/ui/SliderCard";
-import Img from "../../components/lazyLoadImg/Img";
+import useFetch from "../../../hooks/useFetch";
+// import CommanTab from "../../components/commanTab";
+import MovieSlider from "../../../components/movieSlider";
+import SliderCard from "../../../components/ui/SliderCard";
+import Img from "../../../components/lazyLoadImg/Img";
+import Genres from "../../../components/genres";
+import Circle from "../../../components/circle";
 import dayjs from "dayjs";
-import Circle from "../../components/circle";
-import Genres from "../../components/genres";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import noposter from "../../../assets/no-poster.png";
 
-const Trending = () => {
-  const url = useSelector((state) => state.home.url);
-  const [endPoint, setEndPoint] = useState("day");
-  const { data } = useFetch(`/trending/all/${endPoint}`);
-  // console.log(data);
+const SimilarCarousel = ({ similar }) => {
+  console.log(similar);
+  const { mediaType, id } = useParams();
+
+  const [endPoint, setEndPoint] = useState("tv");
+  const { url } = useSelector((state) => state.home);
+  // const { data, isLoading, error } = useFetch(`/${endPoint}/popular`);
   const navigate = useNavigate();
+
+  // console.log(data);
 
   const onTabChangeHandler = (currantTab, index) => {
     let converToLower = currantTab.toLowerCase();
@@ -47,39 +52,29 @@ const Trending = () => {
       },
     ],
   };
-  const skItem = () => {
-    <div className="skeltonIem">
-      <div className="postBlock skeleton"></div>
-      <div className="textBlock skeleton">
-        <div className="title skeleton"></div>
-      </div>
-    </div>;
-  };
-
   return (
-    <div className="trending">
+    <div className="trending mt-4">
       <div className="container">
         <div className="slider__title__section">
-          <h2 className="slider__title">Trending</h2>
-          <CommanTab data={["Day", "Week"]} onTabChange={onTabChangeHandler} />
+          <h2 className="slider__title">{`Similar ${mediaType.toUpperCase()} `}</h2>
+          {/* <CommanTab data={["Tv", "Movie"]} onTabChange={onTabChangeHandler} /> */}
         </div>
 
         <div className="comman__slider">
-          {/* {!isLoading ? ( */}
           <MovieSlider settings={settings}>
-            {data?.results.map((item) => {
+            {similar?.results.map((item) => {
               return (
                 <div key={item.id}>
                   <SliderCard className="slider__card">
-                    <div className="slider__card__poster position-relative" onClick={() => navigate(`/${item.media_type || endPoint}/${item.id}`)}>
-                      <Img src={url.poster + item.poster_path} alt={item.title} className="img-thumbnail"></Img>
+                    <div className="slider__card__poster position-relative" onClick={() => navigate(`/${mediaType}/${item.id}`)}>
+                      <Img src={item?.poster_path !== null ? url.poster + item.poster_path : noposter} alt={item.title} className="img-thumbnail" />{" "}
                       <div className="genres">
                         <Genres data={item.genre_ids} />
                       </div>
                     </div>
                     <div className="card__content">
                       <Circle rating={item.vote_average.toFixed(1)} />
-                      <h5 className="card__content__title">{item.title || item.movie}</h5>
+                      <h5 className="card__content__title">{item.title || item.name}</h5>
                       <div className="card__content__relaseDate">{dayjs(item.release_date).format("MMM D, YYYY")}</div>
                     </div>
                   </SliderCard>
@@ -102,4 +97,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default SimilarCarousel;

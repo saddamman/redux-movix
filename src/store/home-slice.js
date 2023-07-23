@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const homeInitialState = {
   url: {},
   genres: {},
+  isModalShow: false,
 };
 const homeSlice = createSlice({
   name: "home",
@@ -14,9 +15,12 @@ const homeSlice = createSlice({
     getGenres(state, action) {
       state.genres = action.payload;
     },
+    showVideoModal(state, action) {
+      state.isModalShow = action.payload;
+    },
   },
 });
 
-export const { getApiConfiguration, getGenres } = homeSlice.actions;
+export const { getApiConfiguration, getGenres, showVideoModal } = homeSlice.actions;
 
 export default homeSlice.reducer;

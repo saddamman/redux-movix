@@ -11,6 +11,7 @@
   -webkit-text-size-adjust: 100%;
 
   --black: #04152d;
+  --light-text: #a0adc1;
   --white: #ffffff;
   --black2: #041226;
   --black3: #020c1b;
@@ -18,6 +19,7 @@
   --black-light: #173d77;
   --pink: #da2f68;
   --orange: #f89e00;
+  --green: #11945d;
   --gradient: linear-gradient(98.37deg, #f89e00 0.99%, #da2f68 100%);
 }
 
@@ -29,6 +31,12 @@
 
 body {
   background-color: var(--black);
+}
+.pointer-none {
+  pointer-events: none;
+}
+.light-text {
+  color: var(--light-text);
 }
 
 ::-webkit-scrollbar {

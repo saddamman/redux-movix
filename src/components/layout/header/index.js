@@ -14,9 +14,10 @@ const Header = () => {
 
   const inputRef = useRef(null);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [location]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setHeaderShow("top");
+  }, [location]);
 
   useEffect(() => {
     if (showSearch) {

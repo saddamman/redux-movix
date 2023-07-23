@@ -1,0 +1,13 @@
+.rating__cricle {
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border-radius: 100%;
+  padding: 2px;
+  margin-bottom: 10px;
+
+  .CircularProgressbar-text {
+    font-size: $font24;
+    fill: #000;
+  }
+}

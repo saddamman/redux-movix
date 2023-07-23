@@ -1,0 +1,19 @@
+.comman__slider {
+  @include md {
+    .slick-prev:before,
+    .slick-next:before {
+      font-size: 35px;
+    }
+    .slick-prev {
+      left: 0;
+      width: auto;
+      height: auto;
+      z-index: 1;
+    }
+    .slick-next {
+      @extend .slick-prev;
+      right: 0;
+      left: auto;
+    }
+  }
+}

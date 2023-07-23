@@ -1,0 +1,17 @@
+.officailVideo__section {
+  .officailVideo__block {
+    .watch__btn {
+      @include md {
+        span {
+          display: none;
+        }
+      }
+    }
+    &__details {
+      padding-top: 10px;
+      h4 {
+        font-size: $font14;
+      }
+    }
+  }
+}

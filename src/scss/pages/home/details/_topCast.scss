@@ -1,0 +1,13 @@
+.cast__section {
+  .cast__block {
+    &__details {
+      padding-top: 10px;
+      h4 {
+        font-size: $font18;
+      }
+      h5 {
+        font-size: $font14;
+      }
+    }
+  }
+}

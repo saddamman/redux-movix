@@ -20,6 +20,7 @@
 
       .menu {
         @include flexbox($justify-content: space-between, $align-items: center);
+        margin-bottom: 0;
 
         li {
           margin: 0 20px;
