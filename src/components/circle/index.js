@@ -3,8 +3,6 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const Circle = ({ rating }) => {
-  const percentage = 20;
-
   return (
     <div className="rating__cricle">
       <CircularProgressbar

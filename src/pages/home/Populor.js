@@ -14,7 +14,7 @@ import noposter from "../../assets/no-poster.png";
 const Populor = () => {
   const [endPoint, setEndPoint] = useState("tv");
   const { url } = useSelector((state) => state.home);
-  const { data, isLoading, error } = useFetch(`/${endPoint}/popular`);
+  const { data } = useFetch(`/${endPoint}/popular`);
   const navigate = useNavigate();
 
   // console.log(data);

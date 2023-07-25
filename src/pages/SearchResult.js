@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
 import { fetchDataFromApi } from "../utils/api";
 import Loader from "../components/ui/Loader";
 import SliderCard from "../components/ui/SliderCard";
 import Img from "../components/lazyLoadImg/Img";
 import { useSelector } from "react-redux";
-import Genres from "../components/genres";
-import Circle from "../components/circle";
 import dayjs from "dayjs";
 import noposter from "../assets/no-poster.png";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -20,14 +17,6 @@ const SearchResult = () => {
   const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
 
-  const fetchInitialData = () => {
-    setLoading(true);
-    fetchDataFromApi(`/search/multi?query=${query}`).then((res) => {
-      setData(res);
-      setPageNum((prev) => prev + 1);
-      setLoading(false);
-    });
-  };
   const fetchMoreData = () => {
     console.log(pageNum);
 
@@ -44,6 +33,14 @@ const SearchResult = () => {
 
   useEffect(() => {
     setPageNum(1);
+    const fetchInitialData = () => {
+      setLoading(true);
+      fetchDataFromApi(`/search/multi?query=${query}`).then((res) => {
+        setData(res);
+        setPageNum((prev) => prev + 1);
+        setLoading(false);
+      });
+    };
     fetchInitialData();
   }, [query]);
 

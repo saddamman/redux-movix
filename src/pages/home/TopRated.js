@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const TopRated = () => {
   const [endPoint, setEndPoint] = useState("tv");
   const { url } = useSelector((state) => state.home);
-  const { data, isLoading, error } = useFetch(`/${endPoint}/top_rated`);
+  const { data } = useFetch(`/${endPoint}/top_rated`);
   const navigate = useNavigate();
 
   console.log(data);
@@ -47,14 +47,14 @@ const TopRated = () => {
       },
     ],
   };
-  const skItem = () => {
-    <div className="skeltonIem">
-      <div className="postBlock skeleton"></div>
-      <div className="textBlock skeleton">
-        <div className="title skeleton"></div>
-      </div>
-    </div>;
-  };
+  // const skItem = () => {
+  //   <div className="skeltonIem">
+  //     <div className="postBlock skeleton"></div>
+  //     <div className="textBlock skeleton">
+  //       <div className="title skeleton"></div>
+  //     </div>
+  //   </div>;
+  // };
   return (
     <div className="trending">
       <div className="container">

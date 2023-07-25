@@ -47,14 +47,14 @@ const Trending = () => {
       },
     ],
   };
-  const skItem = () => {
-    <div className="skeltonIem">
-      <div className="postBlock skeleton"></div>
-      <div className="textBlock skeleton">
-        <div className="title skeleton"></div>
-      </div>
-    </div>;
-  };
+  // const skItem = () => {
+  //   <div className="skeltonIem">
+  //     <div className="postBlock skeleton"></div>
+  //     <div className="textBlock skeleton">
+  //       <div className="title skeleton"></div>
+  //     </div>
+  //   </div>;
+  // };
 
   return (
     <div className="trending">
