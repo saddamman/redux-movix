@@ -15,8 +15,8 @@ const AppRouter = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/:mediaType/:id" element={<Details />}></Route>
-          <Route path="/:search/:query" element={<SearchResult />}></Route>
-          <Route path="/:explore/:mediaType" element={<Explore />}></Route>
+          <Route path="/search/:query" element={<SearchResult />}></Route>
+          <Route path="/explore/:mediaType" element={<Explore />}></Route>
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
         <Footer />

@@ -2,9 +2,13 @@
   background: transparent;
   border: 0;
   .card-body {
-    padding: 10px;
+    // padding: 10px;
     .slider__card__poster {
       cursor: pointer;
+
+      .lazy-load-image-background {
+        height: 100%;
+      }
       .genres {
         position: absolute;
         bottom: 5px;
@@ -16,12 +20,15 @@
 
     .img-thumbnail {
       border: 0;
+      height: 100%;
+      object-fit: cover;
     }
     .card__content {
-      overflow: hidden;
       padding: 10px 10px 3px 10px;
-      margin-top: -40px;
       position: relative;
+      &.move_top {
+        margin-top: -40px;
+      }
       &__title {
         color: var(--white);
         font-size: $font16;

@@ -53,8 +53,8 @@ const Header = () => {
     if (event.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
       setTimeout(() => {
-        setHeaderShow(false);
-      });
+        setShowSearch(false);
+      }, 1500);
     }
   };
 
@@ -62,7 +62,7 @@ const Header = () => {
     if (type === "movie") {
       navigate("/explore/movie");
     } else {
-      navigate("/explore/tv-show");
+      navigate("/explore/tv");
     }
   };
 
@@ -86,7 +86,7 @@ const Header = () => {
               </li>
               <li
                 onClick={() => {
-                  navigateHandler("tv-show");
+                  navigateHandler("tv");
                 }}>
                 TV Shows
               </li>

@@ -16,7 +16,6 @@ const DetailsBanner = ({ video, crew }) => {
   const { mediaType, id } = useParams();
   const { data, isLoading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
-
   const { isModalShow } = useSelector((state) => state.home);
   let genres = data?.genres.map((gen) => gen.id);
   const director = crew?.filter((dir) => dir.job === "Director");

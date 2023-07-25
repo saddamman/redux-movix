@@ -1,0 +1,6 @@
+.loader {
+  @include flexbox($justify-content: center, $align-items: center);
+  &__resultPage {
+    height: 400px;
+  }
+}

@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
+// import CommanTab from "../../components/commanTab";
+import MovieSlider from "../../../components/movieSlider";
+import SliderCard from "../../../components/ui/SliderCard";
+import Img from "../../../components/lazyLoadImg/Img";
+import Genres from "../../../components/genres";
+import Circle from "../../../components/circle";
 import dayjs from "dayjs";
-import useFetch from "../../hooks/useFetch";
-import CommanTab from "../../components/commanTab";
-import MovieSlider from "../../components/movieSlider";
-import SliderCard from "../../components/ui/SliderCard";
-import Img from "../../components/lazyLoadImg/Img";
-import Genres from "../../components/genres";
-import Circle from "../../components/circle";
-import noposter from "../../assets/no-poster.png";
+import { useNavigate, useParams } from "react-router-dom";
+import noposter from "../../../assets/no-poster.png";
 
-const Populor = () => {
+const Recommendations = ({ recommendations }) => {
+  console.log(recommendations);
+  const { mediaType, id } = useParams();
+
   const [endPoint, setEndPoint] = useState("tv");
   const { url } = useSelector((state) => state.home);
-  const { data, isLoading, error } = useFetch(`/${endPoint}/popular`);
+  // const { data, isLoading, error } = useFetch(`/${endPoint}/popular`);
   const navigate = useNavigate();
 
   // console.log(data);
@@ -50,26 +53,21 @@ const Populor = () => {
     ],
   };
   return (
-    <div className="trending">
+    <div className="trending mt-4">
       <div className="container">
         <div className="slider__title__section">
-          <h2 className="slider__title">Populor</h2>
-          <CommanTab data={["Tv", "Movie"]} onTabChange={onTabChangeHandler} />
+          <h2 className="slider__title">{`Recommendations ${mediaType.toUpperCase()} `}</h2>
+          {/* <CommanTab data={["Tv", "Movie"]} onTabChange={onTabChangeHandler} /> */}
         </div>
 
         <div className="comman__slider">
           <MovieSlider settings={settings}>
-            {data?.results.map((item) => {
+            {recommendations?.results.map((item) => {
               return (
                 <div key={item.id}>
                   <SliderCard className="slider__card">
-                    <div className="slider__card__poster position-relative" onClick={() => navigate(`/${item.media_type || endPoint}/${item.id}`)}>
-                      <Img
-                        src={item?.poster_path != null ? url.poster + item.poster_path : noposter}
-                        alt={item.title}
-                        className="img-thumbnail h-100"
-                      />
-                      {/* <Img src={url.poster + item.poster_path} alt={item.title} className="img-thumbnail" />{" "} */}
+                    <div className="slider__card__poster position-relative" onClick={() => navigate(`/${mediaType}/${item.id}`)}>
+                      <Img src={item?.poster_path !== null ? url.poster + item.poster_path : noposter} alt={item.title} className="img-thumbnail" />{" "}
                       <div className="genres">
                         <Genres data={item.genre_ids} />
                       </div>
@@ -99,4 +97,4 @@ const Populor = () => {
   );
 };
 
-export default Populor;
+export default Recommendations;

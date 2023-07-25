@@ -6,3 +6,15 @@
 .slider__title {
   @include heading($color: var(--white), $fontSize: $font24);
 }
+
+.header__space {
+  padding-top: 100px;
+}
+
+.explorePage {
+  .slider__card {
+    .card-body {
+      padding: 0;
+    }
+  }
+}
