@@ -1,5 +1,5 @@
 .slider__title__section {
-  @include flexbox($justify-content: space-between, $align-items: center);
+  @include flexbox($justify-content: space-between, $align-items: center, $wrap: wrap);
   margin-bottom: 20px;
 }
 

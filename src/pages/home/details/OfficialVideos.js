@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Img from "../../../components/lazyLoadImg/Img";
-import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import VideoModal from "../../../components/ui/modal/videoModal";

@@ -25,17 +25,27 @@ const Header = () => {
     }
   }, [showSearch]);
 
-  const onScroll = () => {
-    if (window.scrollY > 200) {
-      if (window.scrollY > lastScrollY) setHeaderShow("hide");
-      else {
-        setHeaderShow("top");
-      }
-    }
-    setLastScrollY(window.scrollY);
-  };
+  // const onScroll = () => {
+  //   if (window.scrollY > 200) {
+  //     if (window.scrollY > lastScrollY) setHeaderShow("hide");
+  //     else {
+  //       setHeaderShow("top");
+  //     }
+  //   }
+  //   setLastScrollY(window.scrollY);
+  // };
 
   useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 200) {
+        if (window.scrollY > lastScrollY) setHeaderShow("hide");
+        else {
+          setHeaderShow("top");
+        }
+      }
+      setLastScrollY(window.scrollY);
+    };
+
     window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);

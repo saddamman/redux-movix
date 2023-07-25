@@ -49,6 +49,7 @@ body {
 .filter_header {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
   .customize-select {
     min-width: 200px;
   }
