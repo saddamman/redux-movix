@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import dayjs from "dayjs";
-import { showVideoModal } from "../../../../store/home-slice";
 import useFetch from "../../../../hooks/useFetch";
 import Img from "../../../../components/lazyLoadImg/Img";
 import Genres from "../../../../components/genres";
@@ -12,17 +11,20 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import VideoModal from "../../../../components/ui/modal/videoModal";
 
 const DetailsBanner = ({ video, crew }) => {
-  const dispatch = useDispatch();
   const { mediaType, id } = useParams();
   const { data, isLoading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
-  const { isModalShow } = useSelector((state) => state.home);
+  const [showModal, setShowModal] = useState(false);
   let genres = data?.genres.map((gen) => gen.id);
   const director = crew?.filter((dir) => dir.job === "Director");
   const writer = crew?.filter((f) => f.job === "Screenplay" || f.job === "Screenstory" || f.job === "Writer");
 
   const showVideoHandler = () => {
-    dispatch(showVideoModal(true));
+    setShowModal(true);
+  };
+
+  const hideModalHandler = () => {
+    setShowModal(false);
   };
 
   const hourMin = () => {
@@ -121,8 +123,8 @@ const DetailsBanner = ({ video, crew }) => {
                   </div>
                 </div>
               </div>
-              {isModalShow && (
-                <VideoModal>
+              {showModal && (
+                <VideoModal onHideModal={hideModalHandler}>
                   {console.log("BannerDetaile")}
                   <div className="video-responsive ratio ratio-16x9">
                     <iframe

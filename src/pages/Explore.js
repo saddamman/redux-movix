@@ -79,8 +79,6 @@ const Explore = () => {
     }
 
     if (action.name === "genres") {
-      console.log(selectedItems);
-
       setGenre(selectedItems);
       if (action.action !== "clear") {
         let genreId = selectedItems.map((g) => g.id);
@@ -145,10 +143,11 @@ const Explore = () => {
               hasMore={pageNum <= data?.total_pages}
               loader={<small className="text-white text-center d-block mt-3 mb-5">Loading...</small>}>
               <div className="row">
+                {console.log(data)}
                 {data?.results.map((item, index) => (
                   <div className="col-sm-3" key={index}>
                     <SliderCard className="slider__card remove-card-sapce">
-                      <div className="slider__card__poster position-relative" onClick={() => navigate(`/${item.media_type}/${item.id}`)}>
+                      <div className="slider__card__poster position-relative" onClick={() => navigate(`/${mediaType}/${item.id}`)}>
                         <Img
                           src={item?.poster_path != null ? url.poster + item.poster_path : noposter}
                           alt={item.title}

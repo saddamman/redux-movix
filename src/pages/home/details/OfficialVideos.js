@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Img from "../../../components/lazyLoadImg/Img";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { showVideoModal } from "../../../store/home-slice";
 import VideoModal from "../../../components/ui/modal/videoModal";
 
 const OfficialVideo = ({ video }) => {
-  const dispatch = useDispatch();
-  const { url } = useSelector((state) => state.home);
-  const { isModalShow } = useSelector((state) => state.home);
+  const [showModal, setShowModal] = useState(false);
+  const [videoData, setVideoData] = useState({});
 
-  const showOfficalHandler = () => {
-    dispatch(showVideoModal(true));
+  const showVideoHandler = (currantVideo, title) => {
+    setVideoData({
+      videoKey: currantVideo,
+      videoTitle: title,
+    });
+    setShowModal(true);
+  };
+
+  const hideModalHandler = () => {
+    setShowModal(false);
   };
   return (
     <div className="officailVideo__section mt-4">
@@ -29,7 +35,9 @@ const OfficialVideo = ({ video }) => {
                 />
                 <button
                   className="btn btn btn-outline-light position-absolute top-50 start-50 translate-middle watch__btn"
-                  onClick={showOfficalHandler}>
+                  onClick={() => {
+                    showVideoHandler(c?.key);
+                  }}>
                   <FontAwesomeIcon icon={faPlay} />
                   <small className="ps-2 py-1 px-1 ">Watch Trailer</small>
                 </button>
@@ -37,28 +45,27 @@ const OfficialVideo = ({ video }) => {
               <div className="officailVideo__block__details">
                 <h4 className="fw-semibold text-white ">{c?.name}</h4>
               </div>
-
-              {isModalShow && (
-                <VideoModal>
-                  {console.log("BannerDetaile")}
-                  <div className="video-responsive ratio ratio-16x9">
-                    <iframe
-                      // width="853"
-                      // height="480"
-                      loading="lazy"
-                      src={`https://www.youtube.com/embed/${c.key}`}
-                      // frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      title={c?.name}
-                    />
-                  </div>
-                </VideoModal>
-              )}
             </div>
           ))}
         </div>
       </div>
+      {showModal && (
+        <VideoModal onHideModal={hideModalHandler}>
+          {console.log("BannerDetaile")}
+          <div className="video-responsive ratio ratio-16x9">
+            <iframe
+              // width="853"
+              // height="480"
+              loading="lazy"
+              src={`https://www.youtube.com/embed/${videoData.videoKey}`}
+              // frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={videoData.title}
+            />
+          </div>
+        </VideoModal>
+      )}
     </div>
   );
 };

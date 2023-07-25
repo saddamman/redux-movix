@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Backdrop from "../Backdrop";
 import { useDispatch } from "react-redux";
-import { showVideoModal } from "../../../../store/home-slice";
+// import { showVideoModal } from "../../../../store/home-slice";
 
 const VideoModal = (props) => {
   const dispatch = useDispatch();
 
   const hideVideoModal = () => {
-    dispatch(showVideoModal(false));
+    props.onHideModal();
   };
   const Modal = () => {
     return (

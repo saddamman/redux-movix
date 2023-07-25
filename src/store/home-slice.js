@@ -15,9 +15,6 @@ const homeSlice = createSlice({
     getGenres(state, action) {
       state.genres = action.payload;
     },
-    showVideoModal(state, action) {
-      state.isModalShow = action.payload;
-    },
   },
 });
 
