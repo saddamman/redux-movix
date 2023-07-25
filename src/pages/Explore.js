@@ -66,8 +66,17 @@ const Explore = () => {
     setPageNum(1);
     setSortby(null);
     setGenre(null);
+    const fetchInitialData = () => {
+      setLoading(true);
+      fetchDataFromApi(`/discover/${mediaType}`, filters).then((res) => {
+        setData(res);
+        setPageNum((prev) => prev + 1);
+        setLoading(false);
+      });
+    };
     fetchInitialData();
   }, [mediaType]);
+
   const onChange = (selectedItems, action) => {
     if (action.name === "sortby") {
       setSortby(selectedItems);
@@ -140,12 +149,13 @@ const Explore = () => {
             <InfiniteScroll
               dataLength={data?.results.length || []}
               next={fetchMoreData}
+              comm
               hasMore={pageNum <= data?.total_pages}
               loader={<small className="text-white text-center d-block mt-3 mb-5">Loading...</small>}>
               <div className="row">
                 {console.log(data)}
                 {data?.results.map((item, index) => (
-                  <div className="col-sm-3" key={index}>
+                  <div className="col-6 col-sm-4 col-md-3" key={index}>
                     <SliderCard className="slider__card remove-card-sapce">
                       <div className="slider__card__poster position-relative" onClick={() => navigate(`/${mediaType}/${item.id}`)}>
                         <Img
