@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const homeInitialState = {
   url: {},
   genres: {},
-  isModalShow: false,
 };
 const homeSlice = createSlice({
   name: "home",
